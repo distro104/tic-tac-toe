@@ -26,6 +26,19 @@ board1 = Board(SCREEN_SIZE)
 
 turn = True
 
+# Function responsible to plot the elements in the board
+def plot_board():
+	# get coordenates((x , y)) -> print (board1.array_board[0][0][0])
+	# plot the image -> screen.blit(IMG_O, (0,0))
+	for x in range(len(board1.array_board)):
+		for y in range(len(board1.array_board[x])):
+			cordx,cordy = board1.array_board[y][x][1]
+			if (board1.array_board[x][y][0]) == 1:
+				screen.blit(IMG_O, (cordx,cordy))
+			elif (board1.array_board[x][y][0]) == 2:
+				screen.blit(IMG_X, (cordx,cordy))
+
+
 ################################### main part ###################################
 game_runing = True
 while game_runing:
@@ -56,15 +69,7 @@ while game_runing:
 	print(board1.array_board[2][1])
 
 
-	# get coordenates((x , y)) -> print (board1.array_board[0][0][0])
-	# plot the image -> screen.blit(IMG_O, (0,0))
-	for x in range(len(board1.array_board)):
-		for y in range(len(board1.array_board[x])):
-			cordx,cordy = board1.array_board[y][x][1]
-			if (board1.array_board[x][y][0]) == 1:
-				screen.blit(IMG_O, (cordx,cordy))
-			elif (board1.array_board[x][y][0]) == 2:
-				screen.blit(IMG_X, (cordx,cordy))
+	plot_board()
 
 	
 	pygame.display.update()
