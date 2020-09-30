@@ -9,8 +9,11 @@ pygame.init()
 
 # Screen
 SCREEN_SIZE = 500
-IMG_SIZE = ( round(SCREEN_SIZE / 3) , round(SCREEN_SIZE / 3) )
-screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE))
+
+board1 = Board(SCREEN_SIZE)
+
+IMG_SIZE = ( board1.element_size , board1.element_size )
+screen = pygame.display.set_mode((SCREEN_SIZE, SCREEN_SIZE + 50))
 pygame.display.set_caption("TicTacToe")
 
 IMG_X = pygame.transform.scale(pygame.image.load("images/x.png"),IMG_SIZE)
@@ -20,26 +23,8 @@ SQUARECOLOR = (255,100,100)
 BACKGROUND_IMAGE = pygame.image.load("images/background.png")
 BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE, (SCREEN_SIZE,SCREEN_SIZE))
 
-
-board1 = Board(SCREEN_SIZE)
-
-
-turn = True
-
-# Function responsible to plot the elements in the board
-def plot_board():
-	# get coordenates((x , y)) -> print (board1.array_board[0][0][0])
-	# plot the image -> screen.blit(IMG_O, (0,0))
-	for x in range(len(board1.array_board)):
-		for y in range(len(board1.array_board[x])):
-			cordx,cordy = board1.array_board[y][x][1]
-			if (board1.array_board[x][y][0]) == 1:
-				screen.blit(IMG_O, (cordx,cordy))
-			elif (board1.array_board[x][y][0]) == 2:
-				screen.blit(IMG_X, (cordx,cordy))
-
-
 ################################### main part ###################################
+turn = True
 game_runing = True
 while game_runing:
 	
@@ -47,29 +32,38 @@ while game_runing:
 		if event.type == QUIT:
 			pygame.quit()
 
-		if (turn == True) and (event.type == pygame.MOUSEBUTTONDOWN):
-			mouse_position = pygame.mouse.get_pos()
-			print( mouse_position )
-			turn = False
+		if (turn == True):
+			print("Player Turn!!!")
+			if (event.type == pygame.MOUSEBUTTONDOWN):
+				mouse_position = pygame.mouse.get_pos()
+				print( mouse_position )
+				board1.set_element(mouse_position,1)
+				turn = False
 		elif (turn == False): 
-			time.sleep(3)
-			print("Hello its my turn!!!")
+			print("Machine Turn!!!")
+			time.sleep(2)
 			turn = True
-
-
-
 
 	#Proting images
 	screen.blit(BACKGROUND,(0,0))
 
-	board1.array_board[0][0][0] = 1
-	board1.array_board[1][1][0] = 1
-	board1.array_board[2][2][0] = 1
+	#pygame.draw.line(screen, (100,100,100), [170, 0], [170,500], 11)
+	#pygame.draw.line(screen, (100,100,100), [330, 0], [330,500], 11)
+	#pygame.draw.line(screen, (100,100,100), [0, 170], [500,170], 11)
+	#pygame.draw.line(screen, (100,100,100), [0, 330], [500,330], 11)
 
-	print(board1.array_board[2][1])
+	#board1.array_board[0][0][0] = 2
+	#board1.array_board[0][1][0] = 1
+	#board1.array_board[0][2][0] = 1
+	#board1.array_board[1][0][0] = 2
+	#board1.array_board[1][1][0] = 1
+	#board1.array_board[1][2][0] = 1
+	#board1.array_board[2][0][0] = 2
+	#board1.array_board[2][1][0] = 1
+	#board1.array_board[2][2][0] = 2
 
 
-	plot_board()
+	board1.plot_board(screen, IMG_X, IMG_O)
 
 	
 	pygame.display.update()
