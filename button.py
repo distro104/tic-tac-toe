@@ -22,12 +22,20 @@ class Button:
 			color = self.text_color
 		self.text_style = pygame.font.SysFont(self.text, size)
 		self.text_display = self.text_style.render(self.text, False, color)
-
-
+		
+	def text_ajust_xy(self,ajust = None):
+		if (ajust != None):
+			ajust_x, ajust_y = ajust
+			position_x, position_y = self.position
+			ajust_x += position_x
+			ajust_y += position_y
+			return ((ajust_x,ajust_y))
+		else:
+			return self.position
 
 	def draw(self):
 		pygame.draw.rect(self.screen, self.color,((self.position),(self.dimension)))
-		self.screen.blit(self.text_display, self.position)
+		self.screen.blit(self.text_display, self.text_ajust_xy((80,10)))
 
 	'''
 			# Button Start
