@@ -36,6 +36,8 @@ class Board:
 		pygame.draw.line(screen, (100,100,100), [330, 0], [330,500], 11)
 		pygame.draw.line(screen, (100,100,100), [0, 170], [500,170], 11)
 		pygame.draw.line(screen, (100,100,100), [0, 330], [500,330], 11)
+
+
 		for x in range(len(self.array_board)):
 			for y in range(len(self.array_board[x])):
 				cordx,cordy = self.array_board[y][x][1]

@@ -1,8 +1,7 @@
-import time
-import pygame
+import pygame, random, sys, time
 from pygame.locals import *
 from board import Board
-
+from button import Button
 
 # Initializiang Pygame
 pygame.init()
@@ -18,39 +17,38 @@ pygame.display.set_caption("TicTacToe")
 
 IMG_X = pygame.transform.scale(pygame.image.load("images/x.png"),IMG_SIZE)
 IMG_O = pygame.transform.scale(pygame.image.load("images/o.png"),IMG_SIZE)
-SQUARECOLOR = (255,100,100)
 
 BACKGROUND_IMAGE = pygame.image.load("images/background.png")
 BACKGROUND = pygame.transform.scale(BACKGROUND_IMAGE, (SCREEN_SIZE,SCREEN_SIZE))
 
+button_dimension = (250,50)
+button_position = (0, 500)
+button_color = (0,50,50)
+button_start = Button(screen, button_dimension, button_position, 'Start!!', button_color)
+
+
 ################################### main part ###################################
-turn = True
-game_runing = True
-while game_runing:
+program_runing = True
+
+while program_runing:
 	
-	for event in pygame.event.get():
-		if event.type == QUIT:
-			pygame.quit()
+	player_turn = 1 # need implement rand
+	if (player_turn == 1):
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				pygame.quit()
+				program_runing = False
+				sys.exit()
 
-		if (turn == True):
-			print("Player Turn!!!")
-			if (event.type == pygame.MOUSEBUTTONDOWN):
+			if(event.type == pygame.MOUSEBUTTONDOWN):
 				mouse_position = pygame.mouse.get_pos()
-				print( mouse_position )
 				board1.set_element(mouse_position,1)
-				turn = False
-		elif (turn == False): 
-			print("Machine Turn!!!")
-			time.sleep(2)
-			turn = True
-
-	#Proting images
-	screen.blit(BACKGROUND,(0,0))
-
-	#pygame.draw.line(screen, (100,100,100), [170, 0], [170,500], 11)
-	#pygame.draw.line(screen, (100,100,100), [330, 0], [330,500], 11)
-	#pygame.draw.line(screen, (100,100,100), [0, 170], [500,170], 11)
-	#pygame.draw.line(screen, (100,100,100), [0, 330], [500,330], 11)
+				print(f'Jogador clicou na posicao: {mouse_position}')
+				player_turn = 2
+				
+	elif(player_turn == 2):
+		print('Turno da maquina!!')
+		player_turn = 1
 
 	#board1.array_board[0][0][0] = 2
 	#board1.array_board[0][1][0] = 1
@@ -60,10 +58,28 @@ while game_runing:
 	#board1.array_board[1][2][0] = 1
 	#board1.array_board[2][0][0] = 2
 	#board1.array_board[2][1][0] = 1
-	#board1.array_board[2][2][0] = 2
-
-
-	board1.plot_board(screen, IMG_X, IMG_O)
-
+	#Sboard1.array_board[2][2][0] = 2
 	
+	screen.blit(BACKGROUND,(0,0))
+
+	button_start.set_style('Comic Sans MS',(0,0,50))
+	button_start.draw()
+	
+	board1.plot_board(screen, IMG_X, IMG_O)
+	
+	'''
+	# Button Start
+	button1_dimension = (250,50)
+	button1_position = (0, 500)
+	button1_color = (0,50,50)
+	button1_color_text = (10,10,0)
+	#Text Button
+	text = 'Start Game'
+	myfont = pygame.font.SysFont('Comic Sans MS', 50)
+	
+	textsurface = myfont.render(text, False, (10, 10, 10))
+
+	pygame.draw.rect(screen, button1_color,((button1_position),(button1_dimension)))
+	screen.blit(textsurface,((35, 510)))
+	'''
 	pygame.display.update()
