@@ -50,36 +50,14 @@ while program_runing:
 		print('Turno da maquina!!')
 		player_turn = 1
 
-	#board1.array_board[0][0][0] = 2
-	#board1.array_board[0][1][0] = 1
-	#board1.array_board[0][2][0] = 1
-	#board1.array_board[1][0][0] = 2
-	#board1.array_board[1][1][0] = 1
-	#board1.array_board[1][2][0] = 1
-	#board1.array_board[2][0][0] = 2
-	#board1.array_board[2][1][0] = 1
-	#Sboard1.array_board[2][2][0] = 2
 	
 	screen.blit(BACKGROUND,(0,0))
 
 	button_start.set_style('Comic Sans MS',(0,0,50))
+
 	button_start.draw()
-	
+	button_start.text_ajust_xy((80,10))
 	board1.plot_board(screen, IMG_X, IMG_O)
 	
-	'''
-	# Button Start
-	button1_dimension = (250,50)
-	button1_position = (0, 500)
-	button1_color = (0,50,50)
-	button1_color_text = (10,10,0)
-	#Text Button
-	text = 'Start Game'
-	myfont = pygame.font.SysFont('Comic Sans MS', 50)
-	
-	textsurface = myfont.render(text, False, (10, 10, 10))
 
-	pygame.draw.rect(screen, button1_color,((button1_position),(button1_dimension)))
-	screen.blit(textsurface,((35, 510)))
-	'''
 	pygame.display.update()

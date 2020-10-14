@@ -53,3 +53,15 @@ class Board:
 		#self.array_board[coordx][coordy][0] = player
 		print (f"Coordenada X Y = {coordxy}")
 		print (f"Jogador = {player}")
+
+	# Function 
+	def find_element(self,coordxy):
+		coordx,coordy = coordxy
+		
+		for x in range(len(self.array_board)):
+			for y in range(len(self.array_board[x])):
+				cordx,cordy = self.array_board[y][x][1]
+				if (self.array_board[x][y][0]) == 1:
+					screen.blit(IMG_O, (cordx,cordy))
+				elif (self.array_board[x][y][0]) == 2:
+					screen.blit(IMG_X, (cordx,cordy))
