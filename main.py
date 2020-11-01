@@ -40,10 +40,10 @@ while running:
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos()
-                board1.set_element(mouse_position, 1)
+                board1.set_element_player(mouse_position, 1)
                 print(f'Player mouse position: {mouse_position}')
+                board1.set_element_player(mouse_position, 1)
                 player_turn = 2
-
     elif player_turn == 2:
         print('Machine turn!!')
         player_turn = 1

@@ -1,8 +1,5 @@
 import pygame
-from pygame.locals import *
-
 ''' Class responsible to set the board '''
-
 
 class Board:
     def __init__(self, size=500, column=3, margin=10):
@@ -19,7 +16,7 @@ class Board:
         coordx = self.margin
         coordy = self.margin
 
-        width, height = ((self.element_size, self.element_size))
+        width, height = self.element_size, self.element_size
 
         for i in range(self.column):
             self.array_board.append([])
@@ -29,7 +26,7 @@ class Board:
             coordx = self.margin
             coordy += (height + self.margin)
 
-    # Function responsible to plot the elements in the board
+    # Function: plot the elements in the board
     def plot_board(self, screen, IMG_X, IMG_O):
         # get coordinates((x , y)) -> print (self.array_board[0][0][0])
         # plot the image -> screen.blit(IMG_O, (0,0))
@@ -43,21 +40,35 @@ class Board:
                 coordx, coordy = self.array_board[y][x][1]
                 if (self.array_board[x][y][0]) == 1:
                     screen.blit(IMG_O, (coordx, coordy))
-                elif (self.array_board[x][y][0]) == 2:
+                elif self.array_board[x][y][0] == 2:
                     screen.blit(IMG_X, (coordx, coordy))
 
-    # Function responsible to set a element inside of the board for a player
-    # Obs: if the value referent to the player is not inform the function set the board to 0
-    def set_element(self, coordxy=((0,0)), player=0):
-        # coordx,coordy = coordxy
-        # self.array_board[coordx][coordy][0] = player
-        print(f"Coordinate X Y = {coordxy}")
-        print(f"Player = {player}")
+    # Function: Set an element in the board for a player
+    # Obs: if the player parameter is not passed the function set the element with 0 (No player)
+    def set_element_player(self, coordxy_mouse, player=0):
+        coordx_mouse,coordy_mouse = coordxy_mouse
 
-    # Function 
+        for i, line in enumerate(self.array_board):
+            for j, element in enumerate(line):
+                print(f'Element value: {element[1][0]}')
+                if (coordx_mouse in range (element[1][0], element[1][0] + self.element_size)) and (coordy_mouse in range (element[1][1], element[1][1] + self.element_size)):
+                    self.array_board[j][i][0] = player
+        '''
+        for x in range(len(self.array_board)):
+            for y in range(len(self.array_board[x])):
+                cordx, cordy = self.array_board[y][x][1]
+                    if (self.array_board[x][y][0]) == 1:
+                        screen.blit(IMG_O, (cordx, cordy))
+                    elif (self.array_board[x][y][0]) == 2:
+                        screen.blit(IMG_X, (cordx, cordy))
+        '''
+
+    # Function :
+    # responsible to set a element inside of the board for a player
+    # Obs: if the value referent to the player is not inform the function set the board to 0
     def find_element(self, coordxy):
         coordx, coordy = coordxy
-
+        '''
         for x in range(len(self.array_board)):
             for y in range(len(self.array_board[x])):
                 cordx, cordy = self.array_board[y][x][1]
@@ -65,3 +76,4 @@ class Board:
                     screen.blit(IMG_O, (cordx, cordy))
                 elif (self.array_board[x][y][0]) == 2:
                     screen.blit(IMG_X, (cordx, cordy))
+        '''
