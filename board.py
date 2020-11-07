@@ -57,11 +57,12 @@ class Board:
         if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player \
            or self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][0] == player \
            or self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][0] == player \
-           or self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player \
-           or self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][0] == player \
-           or self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][0] == player \
-           or self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player \
-           or self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and  self.array_board[0][2][0] == player \
-           or self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player:
+           or self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and self.array_board[2][0][0] == player \
+           or self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and self.array_board[2][1][0] == player \
+           or self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and self.array_board[2][2][0] == player \
+           or self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and self.array_board[2][2][0] == player \
+           or self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and  self.array_board[2][0][0] == player:
             print(f'The player {player} WON!!!!!')
             return True
+        else:
+            return False
