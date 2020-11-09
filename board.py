@@ -1,5 +1,7 @@
 import pygame
+
 ''' Class responsible to set the board '''
+
 
 class Board:
     def __init__(self, size=500, column=3, margin=10):
@@ -44,24 +46,32 @@ class Board:
     # Function: Set an element X or O in the board for a player
     # Obs: if the player parameter is not passed the function set the element with 0 (No player)
     def set_element_player(self, coordxy_mouse, player=0):
-        coordx_mouse,coordy_mouse = coordxy_mouse
+        coordx_mouse, coordy_mouse = coordxy_mouse
         for i, line in enumerate(self.array_board):
             for j, element in enumerate(line):
                 print(f'Element value: {element[1][0]}')
                 if (coordx_mouse in range(element[1][0], element[1][0] + self.element_size)) \
-                   and (coordy_mouse in range(element[1][1], element[1][1] + self.element_size)):
+                        and (coordy_mouse in range(element[1][1], element[1][1] + self.element_size)):
                     self.array_board[j][i][0] = player
 
     # Function: Verify the elements on board searching the player winner condicton is True.
     def is_winner(self, player):
-        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player \
-           or self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][0] == player \
-           or self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][0] == player \
-           or self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and self.array_board[2][0][0] == player \
-           or self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and self.array_board[2][1][0] == player \
-           or self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and self.array_board[2][2][0] == player \
-           or self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and self.array_board[2][2][0] == player \
-           or self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and  self.array_board[2][0][0] == player:
+        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][
+            0] == player \
+                or self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and \
+                self.array_board[1][2][0] == player \
+                or self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and \
+                self.array_board[2][2][0] == player \
+                or self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and \
+                self.array_board[2][0][0] == player \
+                or self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and \
+                self.array_board[2][1][0] == player \
+                or self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and \
+                self.array_board[2][2][0] == player \
+                or self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and \
+                self.array_board[2][2][0] == player \
+                or self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and \
+                self.array_board[2][0][0] == player:
             print(f'The player {player} WON!!!!!')
             return True
         else:

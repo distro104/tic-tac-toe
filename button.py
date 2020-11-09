@@ -1,8 +1,7 @@
 import pygame
 from pygame.locals import *
 
-
-''' Class responsible to create the menu bottons '''
+''' Class responsible to create bottons '''
 class Button:
 	def __init__(self, screen = None,  dimension = (30,50), position = (0,0), text = None, color = (68,24,20)):
 		self.screen = screen
@@ -14,13 +13,14 @@ class Button:
 		self.text_color = (68,24,20)
 		self.text_display = None
 		self.text_coordenate = position
-	
+		self.active = False
+
 	def set_style(self, font = 'Comic Sans MS', color = None, size = 50):
 		if (color == None):
 			color = self.text_color
 		self.text_style = pygame.font.SysFont(self.text, size)
 		self.text_display = self.text_style.render(self.text, False, color)
-		
+
 	def text_ajust_xy(self,ajust = None):
 		if (ajust != None):
 			ajust_x, ajust_y = ajust
@@ -35,6 +35,16 @@ class Button:
 		pygame.draw.rect(self.screen, self.color,((self.position),(self.dimension)))
 		self.screen.blit(self.text_display, self.text_coordenate)
 
+	def you_clicked_me(self, mouse_position):
+		mouse_position_x, mouse_position_y = mouse_position
+		button_position_x, button_position_y = self.position
+		button_size_x, button_size_y = self.dimension
+		if mouse_position_x in range(button_position_x, button_position_x+button_size_x):
+			if mouse_position_y in range(button_position_y, button_position_y + button_size_y):
+				print(f'Area buttom press {mouse_position}')
+				return True
+			else:
+				return False
 		'''
 		# Button Start
 		button1_dimension = (250,50)
