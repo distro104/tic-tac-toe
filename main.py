@@ -3,6 +3,7 @@ import sys
 from pygame.locals import *
 from board import Board
 from button import Button
+from machine import Machine
 
 # Initializing Pygame
 pygame.init()
@@ -27,10 +28,12 @@ button_position = (0, 500)
 button_color = (0, 50, 50)
 button_start = Button(screen, button_dimension, button_position, 'Start!!', button_color)
 
+machine = Machine()
+
 # main part
+player_turn = 1  # need implement rand
 running = True
 while running:
-    player_turn = 1  # need implement rand
     if player_turn == 1:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -44,11 +47,15 @@ while running:
                 button_start.you_clicked_me(mouse_position)
                 board1.set_element_player(mouse_position, 1)
                 player_turn = 2
-                board1.is_winner(1)
+                running = not(board1.is_winner(1))
 
     elif player_turn == 2:
         print('Machine turn!!')
+        x, y = machine.play(board1.array_board)
+        board1.set_machine_choice(x, y)
+        print (f'Machine choice: >>{x} -- {y}<<')
         player_turn = 1
+        running = not(board1.is_winner(2))
 
     screen.blit(BACKGROUND, (0, 0))
 

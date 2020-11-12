@@ -32,7 +32,7 @@ class Button:
 			self.text_coordenate = self.position
 
 	def draw(self):
-		pygame.draw.rect(self.screen, self.color,((self.position),(self.dimension)))
+		pygame.draw.rect(self.screen, self.color,((self.position), (self.dimension)))
 		self.screen.blit(self.text_display, self.text_coordenate)
 
 	def you_clicked_me(self, mouse_position):

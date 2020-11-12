@@ -1,16 +1,15 @@
 # Class responsable to machide decisions in  game
-import random
+from random import *
 
 
 class Machine:
     def __init__(self, board=[]):
-        self.board = board
+        pass
 
-    def play(self):
+    def play(self, board):
         while True:
-            rand_x = random.randint(0, 2)
-            rand_y = random.randint(0, 2)
-            if 0 == self.board[rand_x][rand_y][0]:
-                return rand_y, rand_y
+            rand_x = randint(0, 2)
+            rand_y = randint(0, 2)
+            if board[rand_x][rand_y][0] == 0:
+                return rand_x, rand_y
                 break
-

@@ -54,6 +54,9 @@ class Board:
                         and (coordy_mouse in range(element[1][1], element[1][1] + self.element_size)):
                     self.array_board[j][i][0] = player
 
+    def set_machine_choice(self, coord_x, coord_y):
+        self.array_board[coord_x][coord_y][0] = 2
+
     # Function: Verify the elements on board searching the player winner condicton is True.
     def is_winner(self, player):
         if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][
