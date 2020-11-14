@@ -49,33 +49,41 @@ class Board:
         coordx_mouse, coordy_mouse = coordxy_mouse
         for i, line in enumerate(self.array_board):
             for j, element in enumerate(line):
-                print(f'Element value: {element[1][0]}')
-                if (coordx_mouse in range(element[1][0], element[1][0] + self.element_size)) \
-                        and (coordy_mouse in range(element[1][1], element[1][1] + self.element_size)):
-                    self.array_board[j][i][0] = player
+                if coordx_mouse in range(element[1][0], element[1][0] + self.element_size):
+                    if coordy_mouse in range(element[1][1], element[1][1] + self.element_size):
+                        if self.array_board[j][i][0] == 0:
+                            self.array_board[j][i][0] = player
+                            return True
+                        else:
+                            return False
 
     def set_machine_choice(self, coord_x, coord_y):
         self.array_board[coord_x][coord_y][0] = 2
 
     # Function: Verify the elements on board searching the player winner condicton is True.
     def is_winner(self, player):
-        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][
-            0] == player \
-                or self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and \
-                self.array_board[1][2][0] == player \
-                or self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and \
-                self.array_board[2][2][0] == player \
-                or self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and \
-                self.array_board[2][0][0] == player \
-                or self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and \
-                self.array_board[2][1][0] == player \
-                or self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and \
-                self.array_board[2][2][0] == player \
-                or self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and \
-                self.array_board[2][2][0] == player \
-                or self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and \
-                self.array_board[2][0][0] == player:
-            print(f'The player {player} WON!!!!!')
-            return True
-        else:
-            return False
+        is_winner = False
+        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player:
+            is_winner = True
+        if self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][0] == player:
+            is_winner = True
+        if self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][0] == player:
+            is_winner = True
+        if self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and self.array_board[2][0][0] == player:
+            is_winner = True
+        if self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and self.array_board[2][1][0] == player:
+            is_winner = True
+        if self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and self.array_board[2][2][0] == player:
+            is_winner = True
+        if self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and self.array_board[2][2][0] == player:
+            is_winner = True
+        if self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and self.array_board[2][0][0] == player:
+            is_winner = True
+        return is_winner
+
+    def have_space(self):
+        for i in self.array_board:
+            if 0 == i[0][0]:
+                return True
+                break
+

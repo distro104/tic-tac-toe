@@ -33,29 +33,33 @@ machine = Machine()
 # main part
 player_turn = 1  # need implement rand
 running = True
+active_game = False
 while running:
-    if player_turn == 1:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                pygame.quit()
-                running = False
-                sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            running = False
+            sys.exit()
+
+        if player_turn == 1:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_position = pygame.mouse.get_pos()
                 board1.set_element_player(mouse_position, 1)
                 print(f'Player mouse position: {mouse_position}')
                 button_start.you_clicked_me(mouse_position)
                 board1.set_element_player(mouse_position, 1)
                 player_turn = 2
-                running = not(board1.is_winner(1))
+                #print (f'Retorno da funcao is_winner: {board1.is_winner(1)}')
 
-    elif player_turn == 2:
-        print('Machine turn!!')
-        x, y = machine.play(board1.array_board)
-        board1.set_machine_choice(x, y)
-        print (f'Machine choice: >>{x} -- {y}<<')
-        player_turn = 1
-        running = not(board1.is_winner(2))
+        elif player_turn == 2:
+            print('Machine turn!!')
+            x, y = machine.play(board1.array_board)
+            board1.set_machine_choice(x, y)
+            print(f'Machine choice: >>{x} -- {y}<<')
+            player_turn = 1
+            running = not(board1.is_winner(2))
+
+    print(f'Resultado da funcao: {board1.have_space()}')
 
     screen.blit(BACKGROUND, (0, 0))
 
