@@ -21,8 +21,8 @@ class Button:
 		self.text_style = pygame.font.SysFont(self.text, size)
 		self.text_display = self.text_style.render(self.text, False, color)
 
-	def text_ajust_xy(self,ajust = None):
-		if (ajust != None):
+	def text_ajust_xy(self, ajust=None):
+		if ajust != None:
 			ajust_x, ajust_y = ajust
 			position_x, position_y = self.position
 			ajust_x += position_x
@@ -35,7 +35,7 @@ class Button:
 		pygame.draw.rect(self.screen, self.color,((self.position), (self.dimension)))
 		self.screen.blit(self.text_display, self.text_coordenate)
 
-	def you_clicked_me(self, mouse_position):
+	def click(self, mouse_position):
 		mouse_position_x, mouse_position_y = mouse_position
 		button_position_x, button_position_y = self.position
 		button_size_x, button_size_y = self.dimension

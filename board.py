@@ -81,9 +81,16 @@ class Board:
             is_winner = True
         return is_winner
 
-    def have_space(self):
+    def is_full(self):
+        is_full = False
         for i in self.array_board:
             if 0 == i[0][0]:
-                return True
-                break
+                is_full = True
+        return is_full
+
+    def clean(self):
+        for i,list in enumerate(self.array_board):
+            for j,list2 in enumerate(list):
+                self.array_board[i][j][0] = 0
+                print('Board cleaned!!')
 

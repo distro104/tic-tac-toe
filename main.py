@@ -31,7 +31,7 @@ button_start = Button(screen, button_dimension, button_position, 'Start!!', butt
 machine = Machine()
 
 # main part
-player_turn = 1  # need implement rand
+player_turn = 0  # need implement rand
 running = True
 active_game = False
 while running:
@@ -41,25 +41,33 @@ while running:
             running = False
             sys.exit()
 
-        if player_turn == 1:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_position = pygame.mouse.get_pos()
-                board1.set_element_player(mouse_position, 1)
-                print(f'Player mouse position: {mouse_position}')
-                button_start.you_clicked_me(mouse_position)
-                board1.set_element_player(mouse_position, 1)
-                player_turn = 2
-                #print (f'Retorno da funcao is_winner: {board1.is_winner(1)}')
-
-        elif player_turn == 2:
-            print('Machine turn!!')
-            x, y = machine.play(board1.array_board)
-            board1.set_machine_choice(x, y)
-            print(f'Machine choice: >>{x} -- {y}<<')
-            player_turn = 1
-            running = not(board1.is_winner(2))
-
-    print(f'Resultado da funcao: {board1.have_space()}')
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_position = pygame.mouse.get_pos()
+            if button_start.click(mouse_position):
+                board1.clean()
+                player_turn = 1
+            if player_turn == 1:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_position = pygame.mouse.get_pos()
+                    print(f'Function SetElementPlayer returned: {board1.set_element_player(mouse_position, 1)}')
+                    print(f'Player mouse position: {mouse_position}')
+                    button_start.click(mouse_position)
+                    board1.set_element_player(mouse_position, 1)
+                    if board1.is_winner(1):
+                        print('You won the last game!!')
+                        player_turn = 0
+                        print(f'Is the board full?:: {board1.is_full()}')
+                    else:
+                        player_turn = 2
+            if player_turn == 2:
+                x, y = machine.play(board1.array_board)
+                board1.set_machine_choice(x, y)
+                player_turn = 1
+                if board1.is_winner(2):
+                    print('Second player was the winner!!')
+                    player_turn = 0
+                else:
+                    player_turn = 1
 
     screen.blit(BACKGROUND, (0, 0))
 
