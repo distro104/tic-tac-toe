@@ -63,21 +63,29 @@ class Board:
     # Function: Verify the elements on board searching the player winner condicton is True.
     def is_winner(self, player):
         is_winner = False
-        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][0] == player:
+        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][
+            0] == player:
             is_winner = True
-        if self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][0] == player:
+        if self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][
+            0] == player:
             is_winner = True
-        if self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][0] == player:
+        if self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][
+            0] == player:
             is_winner = True
-        if self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and self.array_board[2][0][0] == player:
+        if self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and self.array_board[2][0][
+            0] == player:
             is_winner = True
-        if self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and self.array_board[2][1][0] == player:
+        if self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and self.array_board[2][1][
+            0] == player:
             is_winner = True
-        if self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and self.array_board[2][2][0] == player:
+        if self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and self.array_board[2][2][
+            0] == player:
             is_winner = True
-        if self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and self.array_board[2][2][0] == player:
+        if self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and self.array_board[2][2][
+            0] == player:
             is_winner = True
-        if self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and self.array_board[2][0][0] == player:
+        if self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and self.array_board[2][0][
+            0] == player:
             is_winner = True
         return is_winner
 
@@ -89,8 +97,7 @@ class Board:
         return is_full
 
     def clean(self):
-        for i,list in enumerate(self.array_board):
-            for j,list2 in enumerate(list):
+        for i, list in enumerate(self.array_board):
+            for j, list2 in enumerate(list):
                 self.array_board[i][j][0] = 0
                 print('Board cleaned!!')
-

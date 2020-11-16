@@ -7,16 +7,16 @@ class Button:
 		self.screen = screen
 		self.dimension = dimension
 		self.position = position
-		self.color = (68,24,20)
+		self.color = (68, 24, 20)
 		self.text = text
 		self.text_style = None
-		self.text_color = (68,24,20)
+		self.text_color = (68, 24, 20)
 		self.text_display = None
 		self.text_coordenate = position
 		self.active = False
 
-	def set_style(self, font = 'Comic Sans MS', color = None, size = 50):
-		if (color == None):
+	def set_style(self, font='Comic Sans MS', color=None, size=50):
+		if color == None:
 			color = self.text_color
 		self.text_style = pygame.font.SysFont(self.text, size)
 		self.text_display = self.text_style.render(self.text, False, color)
@@ -27,7 +27,7 @@ class Button:
 			position_x, position_y = self.position
 			ajust_x += position_x
 			ajust_y += position_y
-			self.text_coordenate =  ((ajust_x,ajust_y))
+			self.text_coordenate =  ((ajust_x, ajust_y))
 		else:
 			self.text_coordenate = self.position
 
