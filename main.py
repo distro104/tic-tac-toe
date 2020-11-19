@@ -53,7 +53,7 @@ while running:
                     print(f'Player mouse position: {mouse_position}')
                     button_start.click(mouse_position)
                     board1.set_element_player(mouse_position, 1)
-                    if board1.is_winner(1):
+                    if board1.is_winner(1, screen):
                         print('You won the last game!!')
                         player_turn = 0
                         print(f'Is the board full?:: {board1.is_full()}')
@@ -63,7 +63,7 @@ while running:
                 x, y = machine.play(board1.array_board)
                 board1.set_machine_choice(x, y)
                 player_turn = 1
-                if board1.is_winner(2):
+                if board1.is_winner(2, screen):
                     print('Second player was the winner!!')
                     player_turn = 0
                 else:
@@ -76,5 +76,5 @@ while running:
     button_start.draw()
     button_start.text_ajust_xy((80, 10))
     board1.plot_board(screen, IMG_X, IMG_O)
-
+    board1.winner_line(screen)
     pygame.display.update()

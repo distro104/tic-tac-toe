@@ -61,33 +61,44 @@ class Board:
         self.array_board[coord_x][coord_y][0] = 2
 
     # Function: Verify the elements on board searching the player winner condicton is True.
-    def is_winner(self, player):
+    def is_winner(self, player, screen):
         is_winner = False
-        if self.array_board[0][0][0] == player and self.array_board[0][1][0] == player and self.array_board[0][2][
-            0] == player:
+        if self.array_board[0][0][0] == self.array_board[0][1][0] == self.array_board[0][2][0] == player:
             is_winner = True
-        if self.array_board[1][0][0] == player and self.array_board[1][1][0] == player and self.array_board[1][2][
-            0] == player:
+        elif self.array_board[1][0][0] == self.array_board[1][1][0] == self.array_board[1][2][0] == player:
             is_winner = True
-        if self.array_board[2][0][0] == player and self.array_board[2][1][0] == player and self.array_board[2][2][
-            0] == player:
+        elif self.array_board[2][0][0] == self.array_board[2][1][0] == self.array_board[2][2][0] == player:
             is_winner = True
-        if self.array_board[0][0][0] == player and self.array_board[1][0][0] == player and self.array_board[2][0][
-            0] == player:
+        elif self.array_board[0][0][0] == self.array_board[1][0][0] == self.array_board[2][0][0] == player:
             is_winner = True
-        if self.array_board[0][1][0] == player and self.array_board[1][1][0] == player and self.array_board[2][1][
-            0] == player:
+        elif self.array_board[0][1][0] == self.array_board[1][1][0] == self.array_board[2][1][0] == player:
             is_winner = True
-        if self.array_board[0][2][0] == player and self.array_board[1][2][0] == player and self.array_board[2][2][
-            0] == player:
+        elif self.array_board[0][2][0] == self.array_board[1][2][0] ==  self.array_board[2][2][0] == player:
             is_winner = True
-        if self.array_board[0][0][0] == player and self.array_board[1][1][0] == player and self.array_board[2][2][
-            0] == player:
+        elif self.array_board[0][0][0] == self.array_board[1][1][0] ==  self.array_board[2][2][0] == player:
             is_winner = True
-        if self.array_board[0][2][0] == player and self.array_board[1][1][0] == player and self.array_board[2][0][
-            0] == player:
+        elif self.array_board[0][2][0] == self.array_board[1][1][0] == self.array_board[2][0][0] == player:
             is_winner = True
         return is_winner
+
+    # Function that draw a line along show the squares that make the player win
+    def winner_line(self, screen):
+        if self.array_board[0][0][0] == self.array_board[0][1][0] == self.array_board[0][2][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [60, 85], [445, 85], 5)
+        if self.array_board[1][0][0] == self.array_board[1][1][0] == self.array_board[1][2][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [60, 250], [445, 250], 5)
+        if self.array_board[2][0][0] == self.array_board[2][1][0] == self.array_board[2][2][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [60, 420], [445, 420], 5)
+        if self.array_board[0][0][0] == self.array_board[1][0][0] == self.array_board[2][0][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [85, 60], [85, 445], 5)
+        if self.array_board[0][1][0] == self.array_board[1][1][0] == self.array_board[2][1][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [250, 60], [250, 445], 5)
+        if self.array_board[0][2][0] == self.array_board[1][2][0] == self.array_board[2][2][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [420, 60], [420, 445], 5)
+        if self.array_board[0][0][0] == self.array_board[1][1][0] == self.array_board[2][2][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [60, 85], [420, 445], 5)
+        if self.array_board[0][2][0] == self.array_board[1][1][0] == self.array_board[2][0][0] != 0:
+            pygame.draw.line(screen, (255, 0, 0), [445, 60], [80, 445], 5)
 
     def is_full(self):
         is_full = False
